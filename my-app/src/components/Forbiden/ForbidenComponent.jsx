@@ -2,7 +2,10 @@ import React from "react";
 
 const ForbidenComponent = () => {
     return (
-        <h1>No tienes permisos para ingresar</h1>
+        <div className= "container container-margen contenedor">
+                <p className="message">Primero tienes que registrarte</p>
+        </div>
+        
     );
 }
 

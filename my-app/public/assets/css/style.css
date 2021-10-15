@@ -1292,3 +1292,15 @@ body {
   padding:5px !important;
   border-radius:12px !important;
 }
+
+.contenedor{
+  margin:150px auto 60px!important;
+  background-color: rgba(154, 7, 244, 0.25) !important;
+  border-radius:15px;
+}
+
+.contenedor p{
+  font-size:40px;
+  font-weight: bold;
+  text-decoration: underline;
+}

@@ -1,6 +1,31 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 
 function FormUsers() {
+  const [users,setUsers]=useState([]);
+  const getUsers = async()=>{
+    try{
+      const response = await fetch("http://localhost:3001/get-usuarios");
+      const jsonResponse = await response.json();
+      const responseUsers = jsonResponse.data;
+      const listUsers = responseUsers.map((users)=>
+      <tr>
+        <td>{users.id}</td>
+        <td>{users.name}</td>
+        <td>{users.estado}</td>
+        <td>{users.rol}</td>
+        <td>{users.ciudad}</td>
+      </tr>
+      );
+      setUsers(listUsers);
+      console.log(jsonResponse.data);
+    }
+    catch(error){
+      console.log(error);
+    }
+  };
+  useEffect(()=>{
+      getUsers();
+  },[])
   return (
     <div class="container container-margen">
       <div class="row">
@@ -184,6 +209,9 @@ function FormUsers() {
                 <th scope="col">Ciudad</th>
               </tr>
             </thead>
+            <tbody>
+              {users}
+            </tbody>
           </table>
         </div>
       </div>

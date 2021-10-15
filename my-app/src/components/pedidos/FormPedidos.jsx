@@ -1,7 +1,31 @@
-import React from "react";
+import React,{useState,useEffect}from "react";
 
 
 function FormPedidos() {
+  const [products,setProducts] = useState([]);
+  const getProduct = async()=>{
+    try{
+      const response = await fetch("http://localhost:3001/get-producto");
+      const jsonResponse = await response.json();
+      const responseProducts = jsonResponse.data;
+      const listproducts = responseProducts.map((products)=>
+      <tr>
+        <td>{products.id}</td>
+        <td>{products.name}</td>
+        <td>{products.stock}</td>
+        <td>{products.precio}</td>
+      </tr>
+      );
+      setProducts(listproducts);
+
+    }
+    catch(error){
+      console.log(error);
+    }
+  };
+  useEffect(()=>{
+    getProduct();
+  },[])
   return (
     <div class="container container-margen">
       <div class="row">
@@ -227,6 +251,9 @@ function FormPedidos() {
                 <th scope="col">Precio</th>
               </tr>
             </thead>
+            <tbody>
+              {products}
+            </tbody>
           </table>
         </div>
       </div>
